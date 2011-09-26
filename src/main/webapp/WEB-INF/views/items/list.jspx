@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_com_gordondickens_roobees_domain_Item" items="${items}" z="QKQXv8xDrSXNoqenfAm0mzV0RnY=">
+        <table:table data="${items}" id="l_com_gordondickens_roobees_domain_Item" path="/items" z="Ji9C4vkls1MV7LUdX06KQ/ODFEk=">
+            <table:column id="c_com_gordondickens_roobees_domain_Item_name" property="name" z="sJIV1EBVQhH0RU7WBq8yrNKlhDo="/>
+            <table:column id="c_com_gordondickens_roobees_domain_Item_description" property="description" z="kmBgiMPdMhxEKZSc5Vc3U2BPMrw="/>
+            <table:column date="true" dateTimePattern="${item_visitdate_date_format}" id="c_com_gordondickens_roobees_domain_Item_visitDate" property="visitDate" z="5SNLQRdfQ/oXe5vXvegWWtE+xVM="/>
+        </table:table>
+    </page:list>
+</div>
