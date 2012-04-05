@@ -4,7 +4,7 @@
 package com.gordondickens.roobees.service;
 
 import com.gordondickens.roobees.domain.Item;
-import java.lang.Long;
+import com.gordondickens.roobees.service.ItemService;
 import java.util.List;
 
 privileged aspect ItemService_Roo_Service {

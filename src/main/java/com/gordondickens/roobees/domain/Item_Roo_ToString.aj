@@ -3,18 +3,14 @@
 
 package com.gordondickens.roobees.domain;
 
-import java.lang.String;
+import com.gordondickens.roobees.domain.Item;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 privileged aspect Item_Roo_ToString {
     
     public String Item.toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Description: ").append(getDescription()).append(", ");
-        sb.append("Id: ").append(getId()).append(", ");
-        sb.append("Name: ").append(getName()).append(", ");
-        sb.append("Version: ").append(getVersion()).append(", ");
-        sb.append("VisitDate: ").append(getVisitDate());
-        return sb.toString();
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.SHORT_PREFIX_STYLE);
     }
     
 }

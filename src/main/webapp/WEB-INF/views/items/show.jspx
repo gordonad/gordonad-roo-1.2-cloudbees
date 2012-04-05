@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page"
+     xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_com_gordondickens_roobees_domain_Item" object="${item}" path="/items" z="XroYIATA5/fBUsfHZMsKX1EAHA0=">
-        <field:display field="name" id="s_com_gordondickens_roobees_domain_Item_name" object="${item}" z="CXT6E8GtvUYNwxn+7SVpu46aMXk="/>
-        <field:display field="description" id="s_com_gordondickens_roobees_domain_Item_description" object="${item}" z="dxiCtBqy3JoBDt5VcSNtQhJYdbw="/>
-        <field:display date="true" dateTimePattern="${item_visitdate_date_format}" field="visitDate" id="s_com_gordondickens_roobees_domain_Item_visitDate" object="${item}" z="TM7rIp3Gxy9i9oLQznHtLkbRaa4="/>
+    <page:show id="ps_com_gordondickens_roobees_domain_Item" object="${item}" path="/items"
+               z="XroYIATA5/fBUsfHZMsKX1EAHA0=">
+        <field:display field="name" id="s_com_gordondickens_roobees_domain_Item_name" object="${item}"
+                       z="CXT6E8GtvUYNwxn+7SVpu46aMXk="/>
+        <field:display field="description" id="s_com_gordondickens_roobees_domain_Item_description" object="${item}"
+                       z="dxiCtBqy3JoBDt5VcSNtQhJYdbw="/>
     </page:show>
 </div>

@@ -4,7 +4,7 @@
 package com.gordondickens.roobees.repository;
 
 import com.gordondickens.roobees.domain.Item;
-import java.lang.Long;
+import com.gordondickens.roobees.repository.ItemRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;

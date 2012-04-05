@@ -3,8 +3,7 @@
 
 package com.gordondickens.roobees.domain;
 
-import java.lang.Integer;
-import java.lang.Long;
+import com.gordondickens.roobees.domain.Item;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

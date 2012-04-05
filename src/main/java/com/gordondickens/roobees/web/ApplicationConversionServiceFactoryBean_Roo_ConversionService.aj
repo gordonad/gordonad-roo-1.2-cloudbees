@@ -5,8 +5,7 @@ package com.gordondickens.roobees.web;
 
 import com.gordondickens.roobees.domain.Item;
 import com.gordondickens.roobees.service.ItemService;
-import java.lang.Long;
-import java.lang.String;
+import com.gordondickens.roobees.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -22,7 +21,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Item, String> ApplicationConversionServiceFactoryBean.getItemToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<com.gordondickens.roobees.domain.Item, java.lang.String>() {
             public String convert(Item item) {
-                return new StringBuilder().append(item.getName()).append(" ").append(item.getDescription()).append(" ").append(item.getVisitDate()).toString();
+                return new StringBuilder().append(item.getName()).append(" ").append(item.getDescription()).toString();
             }
         };
     }

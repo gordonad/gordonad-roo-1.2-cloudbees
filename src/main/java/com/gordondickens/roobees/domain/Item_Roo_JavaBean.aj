@@ -3,8 +3,7 @@
 
 package com.gordondickens.roobees.domain;
 
-import java.lang.String;
-import java.util.Date;
+import com.gordondickens.roobees.domain.Item;
 
 privileged aspect Item_Roo_JavaBean {
     
@@ -22,14 +21,6 @@ privileged aspect Item_Roo_JavaBean {
     
     public void Item.setDescription(String description) {
         this.description = description;
-    }
-    
-    public Date Item.getVisitDate() {
-        return this.visitDate;
-    }
-    
-    public void Item.setVisitDate(Date visitDate) {
-        this.visitDate = visitDate;
     }
     
 }

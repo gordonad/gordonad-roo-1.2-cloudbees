@@ -5,19 +5,13 @@ package com.gordondickens.roobees.web;
 
 import com.gordondickens.roobees.domain.Item;
 import com.gordondickens.roobees.service.ItemService;
+import com.gordondickens.roobees.web.ItemController;
 import java.io.UnsupportedEncodingException;
-import java.lang.Integer;
-import java.lang.Long;
-import java.lang.String;
-import java.util.Collection;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,11 +24,10 @@ privileged aspect ItemController_Roo_Controller {
     @Autowired
     ItemService ItemController.itemService;
     
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String ItemController.create(@Valid Item item, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("item", item);
-            addDateTimeFormatPatterns(uiModel);
+            populateEditForm(uiModel, item);
             return "items/create";
         }
         uiModel.asMap().clear();
@@ -42,22 +35,20 @@ privileged aspect ItemController_Roo_Controller {
         return "redirect:/items/" + encodeUrlPathSegment(item.getId().toString(), httpServletRequest);
     }
     
-    @RequestMapping(params = "form", method = RequestMethod.GET)
+    @RequestMapping(params = "form", produces = "text/html")
     public String ItemController.createForm(Model uiModel) {
-        uiModel.addAttribute("item", new Item());
-        addDateTimeFormatPatterns(uiModel);
+        populateEditForm(uiModel, new Item());
         return "items/create";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", produces = "text/html")
     public String ItemController.show(@PathVariable("id") Long id, Model uiModel) {
-        addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("item", itemService.findItem(id));
         uiModel.addAttribute("itemId", id);
         return "items/show";
     }
     
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(produces = "text/html")
     public String ItemController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
@@ -68,15 +59,13 @@ privileged aspect ItemController_Roo_Controller {
         } else {
             uiModel.addAttribute("items", itemService.findAllItems());
         }
-        addDateTimeFormatPatterns(uiModel);
         return "items/list";
     }
     
-    @RequestMapping(method = RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
     public String ItemController.update(@Valid Item item, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
-            uiModel.addAttribute("item", item);
-            addDateTimeFormatPatterns(uiModel);
+            populateEditForm(uiModel, item);
             return "items/update";
         }
         uiModel.asMap().clear();
@@ -84,14 +73,13 @@ privileged aspect ItemController_Roo_Controller {
         return "redirect:/items/" + encodeUrlPathSegment(item.getId().toString(), httpServletRequest);
     }
     
-    @RequestMapping(value = "/{id}", params = "form", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ItemController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("item", itemService.findItem(id));
-        addDateTimeFormatPatterns(uiModel);
+        populateEditForm(uiModel, itemService.findItem(id));
         return "items/update";
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String ItemController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         Item item = itemService.findItem(id);
         itemService.deleteItem(item);
@@ -101,13 +89,8 @@ privileged aspect ItemController_Roo_Controller {
         return "redirect:/items";
     }
     
-    @ModelAttribute("items")
-    public Collection<Item> ItemController.populateItems() {
-        return itemService.findAllItems();
-    }
-    
-    void ItemController.addDateTimeFormatPatterns(Model uiModel) {
-        uiModel.addAttribute("item_visitdate_date_format", DateTimeFormat.patternForStyle("M-", LocaleContextHolder.getLocale()));
+    void ItemController.populateEditForm(Model uiModel, Item item) {
+        uiModel.addAttribute("item", item);
     }
     
     String ItemController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
@@ -117,8 +100,7 @@ privileged aspect ItemController_Roo_Controller {
         }
         try {
             pathSegment = UriUtils.encodePathSegment(pathSegment, enc);
-        }
-        catch (UnsupportedEncodingException uee) {}
+        } catch (UnsupportedEncodingException uee) {}
         return pathSegment;
     }
     

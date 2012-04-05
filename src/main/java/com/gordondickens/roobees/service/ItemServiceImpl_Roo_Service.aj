@@ -5,7 +5,7 @@ package com.gordondickens.roobees.service;
 
 import com.gordondickens.roobees.domain.Item;
 import com.gordondickens.roobees.repository.ItemRepository;
-import java.lang.Long;
+import com.gordondickens.roobees.service.ItemServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

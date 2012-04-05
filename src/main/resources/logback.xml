@@ -1,17 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true" scan="true" scanPeriod="5 seconds">
-    <!--<jmxConfigurator />-->
+<configuration debug="true" scan="true" scanPeriod="30 seconds">
+
+    <!--<property resource="logback.properties" />-->
+
+    <!--
+      <if condition='isNull(property("catalina.home"))'>
+       <then>
+       </then>
+       <else>
+         <property name="log.dir" value="${catalina.home}/logs" />
+       </else>
+      </if>
+    -->
+
+    <appender name="file"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.home}/logs/roobees.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- daily rollover -->
+            <fileNamePattern>${catalina.home}/logs/roobees.%d{yyyy-MM-dd}.log.zip
+            </fileNamePattern>
+
+            <!-- days of history to keep -->
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%.-1level|%-40.40logger{0}|%msg%n</pattern>
+            <!--<pattern>%-4relative [%thread] %-5level %logger{5} - %msg%n%n</pattern>-->
+        </encoder>
+    </appender>
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
 
     <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
         <resetJUL>true</resetJUL>
     </contextListener>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%-5level %logger{0} - %msg%n</pattern>
+        <encoder>
+            <pattern>%.-1level|%-40.40logger{0}|%msg%n</pattern>
+            <!--      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern> -->
         </encoder>
     </appender>
 
+    <logger name="org.springframework.beans" level="info"/>
+    <!--<logger name="org.springframework.beans" level="debug" />-->
+    <!--<logger name="org.springframework.transaction" level="warn" />-->
+    <!--<logger name="org.springframework.orm" level="warn" />-->
+    <!--<logger name="org.springframework.dao" level="debug" />-->
     <logger name="com.gordondickens" level="debug"/>
     <!--<logger name="org.springframework.orm" level="warn"/>-->
     <!--<logger name="org.springframework.jdbc" level="debug"/>-->
@@ -28,7 +66,8 @@
     <logger name="com.mysql" level="debug"/>
 
 
-    <root level="warn">
+    <root level="info">
+        <appender-ref ref="file"/>
         <appender-ref ref="console"/>
     </root>
 </configuration>
