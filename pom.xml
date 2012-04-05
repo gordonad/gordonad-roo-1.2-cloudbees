@@ -377,9 +377,9 @@
                 <artifactId>bees-maven-plugin</artifactId>
                 <version>${maven.cloudbees.plugin}</version>
                 <configuration>
-                    <appid>your-cloudbees-userid/roobees</appid>
-                    <apikey>your-cloudbees-api-key</apikey>
-                    <secret>your-cloudbees-secret-key</secret>
+                    <appid>gdickens/${project.name}</appid>
+                    <apikey>${bees.api.key}</apikey>
+                    <secret>${bees.secret.key}</secret>
                     <message>Roo ItemManager on CloudBees by Gordon Dickens</message>
                 </configuration>
             </plugin>
@@ -510,7 +510,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
-             <plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>${maven.source.plugin}</version>
@@ -1040,4 +1040,15 @@
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>gordon</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <file>
+                    <exists>${user.home}/.bees/bees.config</exists>
+                </file>
+            </activation>
+        </profile>
+    </profiles>
 </project>
