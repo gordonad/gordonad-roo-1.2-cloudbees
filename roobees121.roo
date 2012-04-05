@@ -1,12 +1,17 @@
-# FOR SPRING ROO 1.2 - Spring Data JPA and Service Layer
+# FOR SPRING ROO 1.2.1 - Spring Data JPA and Service Layer
 
 development mode --enabled true
 
 project --topLevelPackage com.gordondickens.roobees --java 6 --projectName roobees
 
+# ##########  TODO TODO TODO  ########## #
+# SET CREDENTIALS for MYSQL              #
+# AND: webapp/WEB-INF/cloudbees-web.xml  #
+# ###################################### #
 jpa setup --provider HIBERNATE --database MYSQL --userName yourmysqluserid --databaseName yourmysqlinstancename --password yourmysqlpasswd
+# ###################################### #
 
-entity --class ~.domain.Item --activeRecord false
+entity jpa --class ~.domain.Item --activeRecord false
 
 field string --fieldName name --sizeMin 3 --sizeMax 30 --class ~.domain.Item
 field string --fieldName description --sizeMax 255 --class ~.domain.Item
@@ -19,3 +24,6 @@ web mvc setup
 web mvc all --package ~.web
 
 logging setup --level DEBUG
+
+perform package
+
