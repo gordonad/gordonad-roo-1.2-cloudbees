@@ -71,7 +71,7 @@
         <jsp.version>2.1</jsp.version>
         <jta.version>1.1</jta.version>
         <junit.version>4.10</junit.version>
-        <logback.version>1.0.1</logback.version>
+        <logback.version>1.2.0</logback.version>
 
         <maven.ant.plugin>1.7</maven.ant.plugin>
         <maven.aspectj.plugin>1.2</maven.aspectj.plugin>
