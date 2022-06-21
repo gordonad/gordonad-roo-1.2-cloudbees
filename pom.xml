@@ -98,7 +98,7 @@
         <maven.war.plugin>2.1.1</maven.war.plugin>
 
         <mockito.version>1.9.0</mockito.version>
-        <mysql.version>5.1.19</mysql.version>
+        <mysql.version>8.0.28</mysql.version>
         <plexus.utils.version>3.0</plexus.utils.version>
         <rome.version>1.0</rome.version>
         <roo.version>1.2.1.RELEASE</roo.version>
