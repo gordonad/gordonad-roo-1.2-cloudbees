@@ -41,7 +41,7 @@
         <commons.lang.version>3.1</commons.lang.version>
         <commons.net.version>3.1</commons.net.version>
         <commons.pool.version>1.6</commons.pool.version>
-        <derby.version>10.8.2.2</derby.version>
+        <derby.version>10.14.2.0</derby.version>
         <detail>true</detail>
         <!-- for plugin help detail -->
         <dom4j.version>1.6.1</dom4j.version>
