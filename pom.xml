@@ -112,7 +112,7 @@
         <tomcat.version>6.0.32</tomcat.version>
         <wtp.version>2.0</wtp.version>
         <validation.version>1.0.0.GA</validation.version>
-        <xalan.version>2.7.1</xalan.version>
+        <xalan.version>2.7.2</xalan.version>
         <xbean.version>3.9</xbean.version>
         <xmlapis.version>2.0.2</xmlapis.version>
         <xmlsec.version>1.4.5</xmlsec.version>
